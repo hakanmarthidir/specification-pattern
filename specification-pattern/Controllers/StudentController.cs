@@ -18,9 +18,9 @@ namespace specification_pattern.Controllers
         }
         
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get(int page, int pageSize)
         {
-            var spec = new ActiveStudentSpec(Domain.Status.Active);
+            var spec = new ActiveStudentSpec(Domain.Status.Active, page, pageSize);
             var result = await this._studentService.GetUsersBySpec(spec).ConfigureAwait(false);          
             return Ok(result);
         }
